@@ -28,7 +28,7 @@ describe("Feature Test:", function() {
     expect(function(){ game.play('o', 2, 2); }).toThrowError("All turns taken");
   });
 
-  it("A player cannot claim a field if it is not already taken", function() {
+  it("A player cannot claim a field if it is already taken", function() {
     game.play('x', 0, 0);
     expect(function(){ game.play('o', 0, 0); }).toThrowError("Position taken");
   });

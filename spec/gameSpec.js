@@ -30,6 +30,10 @@ describe("A Game:", function() {
     expect(game.currentPlayer).toBe('Player 2');
   });
 
+  it("has unique moves in the board", function() {
+    game.play('x', 0, 0);
+    expect(function() { game.play('o', 0, 0); }).toThrowError('Position taken');
+  });
 });
 
 function Helpers () {

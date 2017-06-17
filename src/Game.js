@@ -10,16 +10,25 @@ Game.prototype.addPlayer = function(player) {
 };
 
 Game.prototype.play = function(marker, x, y) {
-  this.isOver();
+  this.validateMove(x, y);
   this.board.push([marker, x, y]);
   this.endTurn();
 };
 
-Game.prototype.isOver = function() {
+Game.prototype.validateMove = function(x, y) {
   if (this.board.length > 8){
     throw new Error("All turns taken");
   }
+  this.checkPosition(x, y);
 };
+
+Game.prototype.checkPosition = function(x, y) {
+  this.board.forEach(function(move) {
+    if (move[1] === x && move[2] === y) {
+        throw new Error('Position taken');
+    }
+  });
+}
 
 Game.prototype.endTurn = function() {
   this.turns += 1;
