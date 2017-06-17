@@ -22,6 +22,25 @@ describe("A Game:", function() {
 
   it("has turns", function() {
     game.play('x', 0, 0);
-    expect(game.turnCounter).toEqual(1);
-  })
+    expect(game.turns).toEqual(1);
+  });
+
+  it("has a current player", function() {
+    game.play('x', 1, 1);
+    expect(game.currentPlayer).toBe('Player 2');
+  });
+
 });
+
+function Helpers () {
+  game = new Game();
+  player1 = new Player();
+  player2 = new Player();
+  game.addPlayer(player1);
+  game.addPlayer(player2);
+  game.play('x', 0, 0);
+  game.play('o', 1, 1);
+  game.play('x', 2, 1);
+  game.play('o', 0, 2);
+  game.play('x', 2, 0);
+}
