@@ -5,8 +5,8 @@ describe("A Game:", function() {
 
   beforeEach(function() {
     game = new Game();
-    player1 = new Player('X');
-    player2 = new Player('O');
+    player1 = new Player('Rob');
+    player2 = new Player('Chris');
     game.addPlayer(player1);
     game.addPlayer(player2);
   });
@@ -27,7 +27,7 @@ describe("A Game:", function() {
 
   it("has a current player", function() {
     game.play('x', 1, 1);
-    expect(game.currentPlayer).toBe('Player 2');
+    expect(game.currentPlayer).toBe('Chris');
   });
 
   it("has unique moves in the board", function() {
@@ -38,12 +38,22 @@ describe("A Game:", function() {
   it("has a defined board size", function() {
     expect(function() { game.play('x', 3, 0); }).toThrowError('Position invalid');
   });
+
+  it("A player wins if they claim all the fields in a row", function() {
+    game.play("x", 0, 0);
+    game.play("o", 0, 1);
+    game.play("x", 1, 0);
+    game.play("o", 0, 2);
+    expect(game.play("x", 2, 0)).toEqual("Game over! Player 1 wins");
+  });
+
 });
 
-function Helpers () {
+
+function Helpers() {
   game = new Game();
-  player1 = new Player();
-  player2 = new Player();
+  player1 = new Player("Rob");
+  player2 = new Player("Chris");
   game.addPlayer(player1);
   game.addPlayer(player2);
   game.play('x', 0, 0);
@@ -51,4 +61,17 @@ function Helpers () {
   game.play('x', 2, 1);
   game.play('o', 0, 2);
   game.play('x', 2, 0);
+}
+
+function Rowgame() {
+  game = new Game();
+  player1 = new Player("Rob");
+  player2 = new Player("Chris");
+  game.addPlayer(player1);
+  game.addPlayer(player2);
+  game.play("x", 0, 0);
+  game.play("o", 0, 1);
+  game.play("x", 1, 0);
+  game.play("o", 0, 2);
+  game.play("x", 2, 0);
 }

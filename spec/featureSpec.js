@@ -33,6 +33,14 @@ describe("Feature Test:", function() {
     expect(function(){ game.play('o', 0, 0); }).toThrowError("Position taken");
   });
 
+  it("A player wins if they claim all the fields in a row", function() {
+    game.play("x", 0, 0);
+    game.play("o", 0, 1);
+    game.play("x", 1, 0);
+    game.play("o", 0, 2);
+    expect(game.play("x", 2, 0)).toEqual("Game over! Player 1 wins");
+  });
+
 });
 
 //   0 1 2
