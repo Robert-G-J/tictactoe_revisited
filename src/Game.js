@@ -11,14 +11,12 @@ Game.prototype.addPlayer = function(player) {
 
 Game.prototype.play = function(marker, x, y) {
   this.validateMove(x, y);
-  console.log(this.board);
   this.board.push([marker, x, y]);
-  console.log(this.board);
   this.endTurn();
-  this.filter();
 };
 
 Game.prototype.endTurn = function() {
+  this.filter();
   this.turns += 1;
   this.switchPlayer();
 };
@@ -30,13 +28,10 @@ Game.prototype.filter = function() {
       x.push(move);
     }
   });
-  this.gameOver(x);
-}
-
-
-Game.prototype.gameOver = function(x) {
-  if (x[0][2] === x[1][2] && x[0][2] === x[2][2]) {
-		return "Game over! Player 1 wins";
+  if (x.length >= 3){
+    if (x[0][2] === x[1][2] && x[0][2] === x[2][2]) {
+      return "Game over! Player 1 wins";
+    }
   }
 };
 
