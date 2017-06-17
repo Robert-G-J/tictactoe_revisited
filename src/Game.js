@@ -11,23 +11,32 @@ Game.prototype.addPlayer = function(player) {
 
 Game.prototype.play = function(marker, x, y) {
   this.validateMove(x, y);
+  console.log(this.board);
   this.board.push([marker, x, y]);
+  console.log(this.board);
   this.endTurn();
+  this.filter();
 };
 
 Game.prototype.endTurn = function() {
-  this.gameOver();
   this.turns += 1;
   this.switchPlayer();
 };
 
-Game.prototype.gameOver = function() {
-  var x = this.board.filter(function(move) {
-	   return move[0] === "x"; });
-  var o = this.board.filter(function(move) {
-   	   return move[0] === "x"; });
-  if (x[0][2] === x[1][2] && x[0][2] === x[2][2]){
-		return "Player 1 wins";
+Game.prototype.filter = function() {
+  var x = [];
+  this.board.forEach(function(move) {
+    if (move[0] === 'x') {
+      x.push(move);
+    }
+  });
+  this.gameOver(x);
+}
+
+
+Game.prototype.gameOver = function(x) {
+  if (x[0][2] === x[1][2] && x[0][2] === x[2][2]) {
+		return "Game over! Player 1 wins";
   }
 };
 
