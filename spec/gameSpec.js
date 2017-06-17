@@ -1,4 +1,4 @@
-describe("Game:", function() {
+describe("A Game:", function() {
   var player1;
   var player2;
   var game;
@@ -7,15 +7,21 @@ describe("Game:", function() {
     game = new Game();
     player1 = new Player('X');
     player2 = new Player('O');
-  });
-
-  it('A game can contain players', function() {
-    expect(game.players).toEqual([]);
-  });
-
-  it("a game can add two players", function() {
     game.addPlayer(player1);
+    game.addPlayer(player2);
+  });
+
+  it("can contain a player", function() {
     expect(game.players).toContain(player1);
   });
 
+  it("can be played", function() {
+    game.play('x', 0, 0);
+    expect(game.board).toContain(['x', 0, 0]);
+  });
+
+  it("has turns", function() {
+    game.play('x', 0, 0);
+    expect(game.turnCounter).toEqual(1);
+  })
 });
