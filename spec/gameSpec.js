@@ -34,6 +34,10 @@ describe("A Game:", function() {
     game.play('x', 0, 0);
     expect(function() { game.play('o', 0, 0); }).toThrowError('Position taken');
   });
+
+  it("has a defined board size", function() {
+    expect(function() { game.play('x', 3, 0); }).toThrowError('Position invalid');
+  });
 });
 
 function Helpers () {
