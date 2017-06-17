@@ -1,0 +1,34 @@
+Objects
+-------
+Player
+Game
+Turn
+Field
+
+Messages
+--------
+turns
+claim a field
+end turn
+win
+game over
+all fields taken
+
+Extracted - first ideas:
+------------------------
+
+Objects:
+Game
+Player
+
+Messages:
+Play
+End turn
+Win
+Game over
+
+Guard cases:
+all fields taken
+position taken
+position doesnt exist
+not players turn?
